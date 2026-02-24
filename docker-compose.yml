@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   bank_simulator:
-    container_name: bank_simulator
+    container_name: bank-simulator
     image: bbyars/mountebank:2.8.1
     ports:
       - "2525:2525"
@@ -12,4 +12,14 @@ services:
       - type: bind
         source: ./imposters
         target: /imposters
-      
+
+  payment-gateway:
+    build: .
+    container_name: payment_gateway
+    ports:
+      - "8090:8090"
+    environment:
+      - BANK_SIMULATOR_URL=http://bank-simulator:8080
+    depends_on:
+      bank_simulator:
+        condition: service_started

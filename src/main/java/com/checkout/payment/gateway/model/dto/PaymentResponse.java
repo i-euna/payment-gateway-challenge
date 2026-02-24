@@ -1,16 +1,17 @@
-package com.checkout.payment.gateway.model;
+package com.checkout.payment.gateway.model.dto;
 
 import com.checkout.payment.gateway.enums.PaymentStatus;
 import java.util.UUID;
 
-public class GetPaymentResponse {
+public class PaymentResponse {
   private UUID id;
   private PaymentStatus status;
   private int cardNumberLastFour;
   private int expiryMonth;
   private int expiryYear;
   private String currency;
-  private int amount;
+  private Long amount;
+
 
   public UUID getId() {
     return id;
@@ -60,11 +61,11 @@ public class GetPaymentResponse {
     this.currency = currency;
   }
 
-  public int getAmount() {
+  public Long getAmount() {
     return amount;
   }
 
-  public void setAmount(int amount) {
+  public void setAmount(Long amount) {
     this.amount = amount;
   }
 

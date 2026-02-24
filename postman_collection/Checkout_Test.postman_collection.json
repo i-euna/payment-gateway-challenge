@@ -1,0 +1,207 @@
+{
+  "info": {
+    "_postman_id": "dc37c5df-8497-4633-86c5-f64d76cf11db",
+    "name": "Checkout_Test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "33317311"
+  },
+  "item": [
+    {
+      "name": "Post_Authorized",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Idempotency-Key",
+            "value": "2",
+            "type": "default"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer sk_test_cko_12345",
+            "type": "default"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cardNumber\": \"2222405343248871\",\n  \"expiryYear\": \"2027\",\n  \"expiryMonth\": \"12\",\n  \"currency\": \"EUR\",\n  \"amount\": 10,\n  \"cvv\": \"123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8090/payments",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "payments"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post_Authorized_InvalidCurrency",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Idempotency-Key",
+            "value": "2",
+            "type": "default"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer sk_test_cko_12345",
+            "type": "default"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cardNumber\": \"2222405343248871\",\n  \"expiryYear\": \"2027\",\n  \"expiryMonth\": \"12\",\n  \"currency\": \"BDT\",\n  \"amount\": 10,\n  \"cvv\": \"123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8090/payments",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "payments"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post_Authorized_InvalidCardNumber",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Idempotency-Key",
+            "value": "4",
+            "type": "default"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer sk_test_cko_12345",
+            "type": "default"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cardNumber\": \"2222405343248871\",\n  \"expiryYear\": \"2027\",\n  \"expiryMonth\": \"12\",\n  \"currency\": \"EUR\",\n  \"amount\": 10.1,\n  \"cvv\": \"123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8090/payments",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "payments"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post_Unauthorized",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Idempotency-Key",
+            "value": "2",
+            "type": "default"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer invalid_sk",
+            "type": "default"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cardNumber\": \"2222405343248871\",\n  \"expiryYear\": \"2027\",\n  \"expiryMonth\": \"12\",\n  \"currency\": \"BDT\",\n  \"amount\": 10,\n  \"cvv\": \"123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8090/payments",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "payments"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Authorized",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer sk_test_cko_12345",
+            "type": "default"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8090/payments/b1289e1e-c45a-4de4-97b9-d13c33e28b04",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "payments",
+            "b1289e1e-c45a-4de4-97b9-d13c33e28b04"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
